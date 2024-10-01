@@ -124,8 +124,15 @@ Earlier, you should have uploaded three `.bam` files — one for the father, one
 
 3. **Filtering** on mapped reads properties:
 
-   Run **Samtools view** (Galaxy version 1.15.1+galaxy0) with the following parameters (leave non-mentioned ones at their defaults):
+   Run **Samtools view** with the following parameters (leave non-mentioned ones at their defaults):
 
    - **SAM/BAM/CRAM data set**: Select all three mapped reads datasets of the family trio (outputs of the BWA-MEM tool).
    - **What would you like to look at?**: A filtered/subsampled selection of reads
    - **Configure filters**: “Exclude reads with any of the following flags set”: Read is unmapped and Mate is unmapped
+
+4. **Removing duplicate reads**
+
+   Run **RmDup** with the following parameters:
+    - **param-files BAM file**: all 3 filtered reads datasets; the outputs of Samtools view
+    - **Is this paired-end or single end data**: BAM is paired-end
+    - **Treat as single-end**: No
