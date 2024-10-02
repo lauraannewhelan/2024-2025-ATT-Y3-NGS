@@ -1,6 +1,6 @@
 # 🧬 Lab: Next-Generation Sequencing Analysis 1 & 2 🧬
 
-In this tutorial, we will guide you through the essential steps involved in processing high-quality reads from Next-Generation Sequencing (NGS) and mapping them to a reference genome. You will learn how to perform quality control on short-read NGS data, map high-quality reads, and understand the post-mapping processes necessary for effective variant calling and annotation. 
+In this lab, we will guide you through the essential steps involved in processing high-quality reads from Next-Generation Sequencing (NGS) and mapping them to a reference genome. You will learn how to perform quality control on short-read NGS data, map high-quality reads, and understand the post-mapping processes necessary for effective variant calling and annotation. 
 
 By the end of this tutorial, you will have a comprehensive understanding of the entire workflow, including:
 - Data preparation
@@ -35,6 +35,8 @@ By the end of this tutorial, you will have a comprehensive understanding of the 
 > **Note:** I have "pre-made" all the files for you. You're going to perform all the steps to make these files, but some of these steps take a long time computationally. That's why we have pre-made files ready for you, similar to a cooking show — *here’s one we made earlier!*
 
 ---
+
+# 🧬 Lab: Next-Generation Sequencing Analysis 1 🧬
 
 # Let's Get Started
 > **There will be a video to follow on screen!**
@@ -166,6 +168,6 @@ You have created you first multisample VCF file, one of the most complicated fil
 
 ---
 
-# ✅ NGS analysis 2
+# 🧬 Lab: Next-Generation Sequencing Analysis 2 🧬
 
 At the end of our last lab we created a multiple sample VCF file - now it's time to do some postprocessing and also annotate the file to make it easier for us to read. 
