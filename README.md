@@ -3,23 +3,25 @@
 In this lab, we will guide you through the essential steps involved in processing high-quality reads from Next-Generation Sequencing (NGS) and mapping them to a reference genome. You will learn how to perform quality control on short-read NGS data, map high-quality reads, and understand the post-mapping processes necessary for effective variant calling and annotation. 
 
 By the end of this tutorial, you will have a comprehensive understanding of the entire workflow, including:
-- Data preparation
-- Quality control
-- Read mapping
-- Generation of variant databases
+- 🗃️ Data preparation
+- ✅ Quality control
+- 🧬 Read mapping
+- 🧾 Generation of variant databases
 
-## Learning Outcomes
+---
 
-### NGS Analysis 1
+## 🎯 Learning Outcomes
+
+### 🔬 NGS Analysis 1
 - Review the structure and origin of sequencing reads.
 - Outline the file formats in which reads and mapped reads are stored.
 - Describe the basic quality control steps necessary for processing read data.
-- Describe the process of read mapping.
+- Explain the process of read mapping.
 
-### NGS Analysis 2
-- Understand the motivation to identify variants from NGS data in a clinical setting.
+### 🧬 NGS Analysis 2
+- Understand the motivation for identifying variants from NGS data in a clinical setting.
 - Describe the GATK best practices for variant identification.
-- Describe the file formats in which variants are stored.
+- Explain the file formats in which variants are stored.
 - Outline the primary measures of variant quality control.
 
 ---
@@ -32,21 +34,21 @@ By the end of this tutorial, you will have a comprehensive understanding of the 
 
 ![Create New History](https://github.com/user-attachments/assets/4d6c3652-22f2-4612-ad62-ae78b5c13c4b)
 
-> **Note:** I have "pre-made" all the files for you. You're going to perform all the steps to make these files, but some of these steps take a long time computationally. That's why we have pre-made files ready for you, similar to a cooking show — *here’s one we made earlier!*
+> **Note:** I have "pre-made" all the files for you. You're going to perform all the steps to make these files, but some of these steps take a long time computationally. That’s why we have pre-made files ready for you, similar to a cooking show — *here’s one we made earlier!*
 
 ---
 
 # 🧬 Lab: Next-Generation Sequencing Analysis 1 🧬
 
-# Let's Get Started
+## 🚀 Let's Get Started
 > **There will be a video to follow on screen!**
 
-## Data Preparation
+### 🗃️ Data Preparation
 
-### Steps
+#### Steps
 1. **Upload your data** to your "ATT_NGS_LAB" history.
 2. **Check dataset types**: Ensure the datasets have their datatypes assigned correctly to `fastqsanger.gz`. Fix any missing or incorrect datatype assignments.
-3. **Tag datasets** as #father, #mother, or #child for the ".gz" files.
+3. **Tag datasets** as #father, #mother, or #child for the `.gz` files.
 
     - To tag a dataset:
       - Click on the dataset to expand it.
@@ -55,28 +57,28 @@ By the end of this tutorial, you will have a comprehensive understanding of the 
       - Press Enter.
       - Check that the tag appears below the dataset name.
 
-4. **Update file type and genome build** for all ".gz" files:
-   - **Type**: fasta
+4. **Update file type and genome build** for all `.gz` files:
+   - **Type**: `fasta`
    - **Genome**: Human Feb. 2009 (GRCh37/hg19) (hg19)
 
 ---
 
-## Quality Control
+### 🔬 Quality Control
 
 This step is to identify any possible issues with the raw sequencing read data before starting the analysis.
 
-### Steps
+#### Steps
 1. **Run FastQC** on each of your six `.fastq` datasets.
 2. **Use MultiQC** to aggregate the raw FastQC data into one comprehensive report.
 3. **Inspect the MultiQC output** for potential issues.
 
 ---
 
-## Read Mapping
+### 🧬 Read Mapping
 
 After confirming that the quality of the input data is acceptable, it’s time to map the sequencing reads to the reference genome.
 
-### Steps
+#### Steps
 
 1. **Map the father’s reads** using BWA-MEM (Galaxy version 0.7.17.2):
    - **Reference Genome**: Use a built-in genome index (Human: hg19).
@@ -84,85 +86,54 @@ After confirming that the quality of the input data is acceptable, it’s time t
    - **First Set of Reads**: Forward reads (R1) of the father.
    - **Second Set of Reads**: Reverse reads (R2) of the father.
    - **Read Group Information**: Set read groups.
-     - **Read Group ID**: 000
-     - **Sample Name**: father
+     - **Read Group ID**: `000`
+     - **Sample Name**: `father`
 
 2. **Map the mother’s reads** using BWA-MEM with the same parameters, except:
-   - **Read Group ID**: 001
-   - **Sample Name**: mother
+   - **Read Group ID**: `001`
+   - **Sample Name**: `mother`
 
 3. **Map the child’s reads** using BWA-MEM with the same parameters, except:
-   - **Read Group ID**: 002
-   - **Sample Name**: proband
+   - **Read Group ID**: `002`
+   - **Sample Name**: `proband`
 
-> **Note:** Read mapping is step that can take a considerable amount of time, so for the next steps we'll use pre made bam files for the next steps. 
+> **Note:** Read mapping is a step that can take a considerable amount of time, so for the next steps, we'll use pre-made `.bam` files.
 
 ---
 
-## Mapped Reads Postprocessing
+### 🧾 Mapped Reads Postprocessing
 
 Earlier, you should have uploaded three `.bam` files — one for the father, one for the mother, and one for the proband. These are exactly what would be produced by BWA-MEM.
 
-### Steps
+#### Steps
 
-1. **Tag datasets** as `#father`, `#mother`, or `#child` for the `.bam` files:
-   
-   - Click on the dataset to expand it.
-   - Click on "Add Tags".
-   - Add the appropriate tag (tags starting with `#` will propagate to tool outputs).
-   - Press Enter.
-   - Check that the tag appears below the dataset name.
+1. **Tag datasets** as `#father`, `#mother`, or `#child` for the `.bam` files.
 
 2. **Update database/build** for all `.bam` files:
-   
-   - Click the desired dataset’s name to expand it.
-   - Click on the “?” next to the database indicator:
-   
-     ![Screenshot](https://github.com/user-attachments/assets/3e10afc7-6148-4433-b393-41f945126ada)
-   
-   - In the central panel, change the **Database/Build** field.
-   - Select your desired database key from the dropdown list: `Human Feb. 2009 (GRCh37/hg19) (hg19)`.
-   - Click the **Save** button.
+   - Change the **Database/Build** field to `Human Feb. 2009 (GRCh37/hg19) (hg19)`.
 
-3. **Filtering** on mapped reads properties:
+3. **Filtering on mapped reads properties**:
+   Run **Samtools view** to exclude unmapped reads from all three mapped reads datasets.
 
-   Run **Samtools view** with the following parameters (leave non-mentioned ones at their defaults):
+4. **Remove duplicate reads**:
+   Run **RmDup** on the filtered reads datasets. Ensure paired-end BAM data is handled appropriately.
 
-   - **SAM/BAM/CRAM data set**: Select all three mapped reads datasets of the family trio (outputs of the BWA-MEM tool).
-   - **What would you like to look at?**: A filtered/subsampled selection of reads
-   - **Configure filters**: “Exclude reads with any of the following flags set”: Read is unmapped and Mate is unmapped
+---
 
-4. **Removing duplicate reads**
+### 🔬 Variant Calling
 
-   Run **RmDup** with the following parameters:
-    - **param-files BAM file**: all 3 filtered reads datasets; the outputs of Samtools view
-    - **Is this paired-end or single end data**: BAM is paired-end
-    - **Treat as single-end**: No
+Now comes the fun part! We're actually going to find variants in our patient vs the human reference genome — sort of like spot the difference.
+
+#### Steps
+
+Run **FreeBayes** to generate variant calls with these parameters:
+- **Reference Genome**: Human: hg19
+- **BAM datasets**: The filtered `.bam` datasets for the family trio.
+- **Run in batch mode?**: Yes, merge output VCFs.
   
-## Variant Calling
+You have now created your first multi-sample VCF file! 🎉
 
-Now is the fun part! We're actually going to find variants in our patient vs the human reference genome - sort of like spot the difference. 
-
-### Steps
-
-FreeBayes is a Bayesian genetic variant detector designed to find small polymorphisms, specifically SNPs (single-nucleotide polymorphisms), indels (insertions and deletions), MNPs (multi-nucleotide polymorphisms), and complex events (composite insertion and substitution events) smaller than the length of a short-read sequencing alignment.
-
-1. **Generating FreeBayes calls**
-
-    Run  **FreeBayes** with the following paramaters:
-    -  **Choose the source for the reference genome**: Locally cached
-    -  **Run in batch mode?**: Merge output VCFs
-    -  **param-files “BAM dataset(s)**: all three mapped reads datasets of the family trio; the outputs of RmDup
-    -  **Using reference genome**: Human: hg19 (or a similarly named option)
-    -  **Limit variant calling to a set of regions?**: Do not limit
-    -  **Choose parameter selection level**: 1. Simple diploid calling
-  
-You have created you first multisample VCF file, one of the most complicated file formats in bioinformatics. For every variant detected in at least one of your samples, this tab-separated format uses a single line to store all information about the variant. This includes but is not limited to:
-
-- the position of the variant in the genome (with respect to the reference genome used for the analysis)
-- the nature of the variant (the actual sequence change associated with it)
-- the detected genotype of every sample at the variant position
-- measures of the reliability of the variant call and of all individual genotype calls
+---
 
 # ✅ That's the end of our first NGS lab!
 
@@ -170,4 +141,55 @@ You have created you first multisample VCF file, one of the most complicated fil
 
 # 🧬 Lab: Next-Generation Sequencing Analysis 2 🧬
 
-At the end of our last lab we created a multiple sample VCF file - now it's time to do some postprocessing and also annotate the file to make it easier for us to read. 
+At the end of our last lab, we created a multi-sample VCF file. Now it's time to do some post-processing and annotation to make it easier to interpret. 
+
+---
+
+### 🧬 Post-processing FreeBayes Calls
+
+#### Candidate Variant Detection
+
+Let’s identify variants that might explain the boy child's osteopetrosis phenotype. Since the parents are consanguineous and unaffected, we can hypothesize the inheritance pattern of the causative variant.
+
+---
+
+### ❓ Question
+
+Which inheritance patterns are in line with the family trio's phenotypic observations?
+
+Hint: GEMINI allows searches for variants fitting the following inheritance patterns:
+- Autosomal recessive
+- Autosomal dominant
+- X-linked recessive
+- X-linked dominant
+- Autosomal de-novo
+- X-linked de-novo
+- Compound heterozygous
+- Loss of heterozygosity (LOH) events
+
+---
+
+### 💡 Solution
+
+We can use the **GEMINI inheritance pattern tool** to easily report all variants fitting specific inheritance models.
+
+---
+
+### 🧠 Hands-on: Finding and Reporting Plausible Causative Variants
+
+Run **GEMINI inheritance pattern** (Galaxy version 0.20.1) with the following settings:
+
+- **GEMINI database**: Your GEMINI database of annotated variants.
+- **Inheritance pattern**: **Autosomal recessive**.
+- **Additional constraints**: `impact_severity != 'LOW'` to exclude variants with low impact.
+
+In **Output - included information**:
+- **Columns to include**: `chrom, start, ref, alt, impact, gene, clinvar_sig, clinvar_disease_name, clinvar_gene_phenotype, rs_ids`
+
+---
+
+### ❓ Question
+
+Can you identify the most likely candidate variant responsible for the child’s disease?
+
+---
