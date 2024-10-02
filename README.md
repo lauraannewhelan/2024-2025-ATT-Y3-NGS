@@ -136,3 +136,5 @@ Earlier, you should have uploaded three `.bam` files — one for the father, one
     - **param-files BAM file**: all 3 filtered reads datasets; the outputs of Samtools view
     - **Is this paired-end or single end data**: BAM is paired-end
     - **Treat as single-end**: No
+
+# ✅ That's the end of our first NGS lab!
