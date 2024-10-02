@@ -136,5 +136,36 @@ Earlier, you should have uploaded three `.bam` files — one for the father, one
     - **param-files BAM file**: all 3 filtered reads datasets; the outputs of Samtools view
     - **Is this paired-end or single end data**: BAM is paired-end
     - **Treat as single-end**: No
+  
+## Variant Calling
+
+Now is the fun part! We're actually going to find variants in our patient vs the human reference genome - sort of like spot the difference. 
+
+### Steps
+
+FreeBayes is a Bayesian genetic variant detector designed to find small polymorphisms, specifically SNPs (single-nucleotide polymorphisms), indels (insertions and deletions), MNPs (multi-nucleotide polymorphisms), and complex events (composite insertion and substitution events) smaller than the length of a short-read sequencing alignment.
+
+1. **Generating FreeBayes calls**
+
+    Run  **FreeBayes** with the following paramaters:
+    -  **Choose the source for the reference genome**: Locally cached
+    -  **Run in batch mode?**: Merge output VCFs
+    -  **param-files “BAM dataset(s)**: all three mapped reads datasets of the family trio; the outputs of RmDup
+    -  **Using reference genome**: Human: hg19 (or a similarly named option)
+    -  **Limit variant calling to a set of regions?**: Do not limit
+    -  **Choose parameter selection level**: 1. Simple diploid calling
+  
+You have created you first multisample VCF file, one of the most complicated file formats in bioinformatics. For every variant detected in at least one of your samples, this tab-separated format uses a single line to store all information about the variant. This includes but is not limited to:
+
+- the position of the variant in the genome (with respect to the reference genome used for the analysis)
+- the nature of the variant (the actual sequence change associated with it)
+- the detected genotype of every sample at the variant position
+- measures of the reliability of the variant call and of all individual genotype calls
 
 # ✅ That's the end of our first NGS lab!
+
+---
+
+# ✅ NGS analysis 2
+
+At the end of our last lab we created a multiple sample VCF file - now it's time to do some postprocessing and also annotate the file to make it easier for us to read. 
