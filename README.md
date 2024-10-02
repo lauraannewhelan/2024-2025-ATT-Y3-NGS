@@ -193,3 +193,12 @@ In **Output - included information**:
 Can you identify the most likely candidate variant responsible for the child’s disease?
 
 ---
+
+## 📚 This lab is based on the following resources:
+
+- Wolfgang Maier, Bérénice Batut, Torsten Houwaart, Anika Erxleben, Björn Grüning, *Exome sequencing data analysis for diagnosing a genetic disease* (Galaxy Training Materials). [Link to tutorial](https://training.galaxyproject.org/training-material/topics/variant-analysis/tutorials/exome-seq/tutorial.html) (Online; accessed Wed Oct 02 2024).
+  
+- Hiltemann, Saskia, Rasche, Helena et al., 2023 *Galaxy Training: A Powerful Framework for Teaching!* PLOS Computational Biology, [10.1371/journal.pcbi.1010752](https://doi.org/10.1371/journal.pcbi.1010752).
+
+- Batut et al., 2018 *Community-Driven Data Analysis Training for Biology*, Cell Systems, [10.1016/j.cels.2018.05.012](https://doi.org/10.1016/j.cels.2018.05.012).
+
