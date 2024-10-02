@@ -68,9 +68,19 @@ By the end of this tutorial, you will have a comprehensive understanding of the 
 This step is to identify any possible issues with the raw sequencing read data before starting the analysis.
 
 #### Steps
-1. **Run FastQC** on each of your six `.fastq` datasets.
-2. **Use MultiQC** to aggregate the raw FastQC data into one comprehensive report.
-3. **Inspect the MultiQC output** for potential issues.
+1. **Run FastQC** on each of your six `.fastq` datasets:
+   - **Output format**: HTML report.
+   - **Select FastQ file format**: `fastqsanger.gz`.
+
+2. **Use MultiQC** to aggregate the raw FastQC data into one comprehensive report:
+   - **Which tool generated logs?**: Auto-detect.
+   - **Select files**: Choose all six `.fastq` datasets.
+   - **Output format**: HTML report.
+
+3. **Inspect the MultiQC output** for potential issues, including:
+   - Per base sequence quality
+   - Per sequence GC content
+   - Sequence duplication levels
 
 ---
 
@@ -85,9 +95,12 @@ After confirming that the quality of the input data is acceptable, it’s time t
    - **Read Type**: Paired-end.
    - **First Set of Reads**: Forward reads (R1) of the father.
    - **Second Set of Reads**: Reverse reads (R2) of the father.
-   - **Read Group Information**: Set read groups.
+   - **Set read group information**:
      - **Read Group ID**: `000`
      - **Sample Name**: `father`
+     - **Library**: `lib1`
+     - **Platform Unit**: `unit1`
+     - **Platform**: `Illumina`
 
 2. **Map the mother’s reads** using BWA-MEM with the same parameters, except:
    - **Read Group ID**: `001`
@@ -107,16 +120,26 @@ Earlier, you should have uploaded three `.bam` files — one for the father, one
 
 #### Steps
 
-1. **Tag datasets** as `#father`, `#mother`, or `#child` for the `.bam` files.
-
+1. **Tag datasets** as `#father`, `#mother`, or `#child` for the `.bam` files:
+   - Click on the dataset to expand it.
+   - Click on "Add Tags" and add the appropriate tag.
+  
 2. **Update database/build** for all `.bam` files:
-   - Change the **Database/Build** field to `Human Feb. 2009 (GRCh37/hg19) (hg19)`.
+   - Click the desired dataset’s name to expand it.
+   - Click the “?” next to the database indicator.
+   - Change the **Database/Build** field to `Human Feb. 2009 (GRCh37/hg19)`.
 
 3. **Filtering on mapped reads properties**:
-   Run **Samtools view** to exclude unmapped reads from all three mapped reads datasets.
+   - **Tool**: Samtools view
+   - **SAM/BAM/CRAM data set**: Select all three mapped reads datasets.
+   - **Filter**: “Exclude reads with any of the following flags set”
+   - **Flags to exclude**: `4` (unmapped), `8` (mate unmapped).
 
 4. **Remove duplicate reads**:
-   Run **RmDup** on the filtered reads datasets. Ensure paired-end BAM data is handled appropriately.
+   - **Tool**: RmDup
+   - **BAM datasets**: All three filtered `.bam` datasets.
+   - **Paired-end data**: Yes.
+   - **Treat as single-end**: No.
 
 ---
 
@@ -126,12 +149,13 @@ Now comes the fun part! We're actually going to find variants in our patient vs 
 
 #### Steps
 
-Run **FreeBayes** to generate variant calls with these parameters:
-- **Reference Genome**: Human: hg19
-- **BAM datasets**: The filtered `.bam` datasets for the family trio.
-- **Run in batch mode?**: Yes, merge output VCFs.
-  
-You have now created your first multi-sample VCF file! 🎉
+Run **FreeBayes** with the following parameters:
+- **Choose the source for the reference genome**: Locally cached.
+- **BAM dataset(s)**: All three filtered and duplicate-removed `.bam` datasets for the family trio.
+- **Using reference genome**: Human: hg19.
+- **Run in batch mode**: Merge output VCFs.
+- **Limit variant calling to a set of regions?**: No.
+- **Parameter selection level**: Simple diploid calling.
 
 ---
 
@@ -181,10 +205,11 @@ Run **GEMINI inheritance pattern** (Galaxy version 0.20.1) with the following se
 
 - **GEMINI database**: Your GEMINI database of annotated variants.
 - **Inheritance pattern**: **Autosomal recessive**.
-- **Additional constraints**: `impact_severity != 'LOW'` to exclude variants with low impact.
+- **Additional constraints**: `impact_severity != 'LOW'` to exclude variants with low impact severity.
 
 In **Output - included information**:
-- **Columns to include**: `chrom, start, ref, alt, impact, gene, clinvar_sig, clinvar_disease_name, clinvar_gene_phenotype, rs_ids`
+- **Columns to include**: `chrom, start, ref, alt, impact, gene, clinvar_sig, clin
+
 
 ---
 
