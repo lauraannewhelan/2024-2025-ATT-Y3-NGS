@@ -716,7 +716,7 @@ Even though it will not always provide as strong support for just one specific c
 
 
 
-#Resources used for this tutorial:
+###Resources used for this tutorial:
 
 1.  Wolfgang Maier, Bérénice Batut, Torsten Houwaart, Anika Erxleben, Björn Grüning, **Exome sequencing data analysis for diagnosing a genetic disease (Galaxy Training Materials)**. [https://training.galaxyproject.org/training-material/topics/variant-analysis/tutorials/exome-seq/tutorial.html](https://training.galaxyproject.org/training-material/topics/variant-analysis/tutorials/exome-seq/tutorial.html) Online; accessed TODAY
 2.  Hiltemann, Saskia, Rasche, Helena et al., 2023 **Galaxy Training: A Powerful Framework for Teaching!** PLOS Computational Biology [10.1371/journal.pcbi.1010752](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010752)
