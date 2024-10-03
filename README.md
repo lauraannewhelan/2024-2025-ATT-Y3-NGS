@@ -1,6 +1,6 @@
 # 🧬 Lab: Next-Generation Sequencing Analysis 1 & 2 🧬
 
-In this lab, we will guide you through the essential steps involved in processing high-quality reads from Next-Generation Sequencing (NGS) and mapping them to a reference genome. You will learn how to perform quality control on short-read NGS data, map high-quality reads, and understand the post-mapping processes necessary for effective variant calling and annotation. 
+Across these two labs, we will guide you through the essential steps involved in processing high-quality reads from Next-Generation Sequencing (NGS) and mapping them to a reference genome. You will learn how to perform quality control on short-read NGS data, map high-quality reads, and understand the post-mapping processes necessary for effective variant calling and annotation. 
 
 By the end of this tutorial, you will have a comprehensive understanding of the entire workflow, including:
 - Data preparation
@@ -27,12 +27,12 @@ By the end of this tutorial, you will have a comprehensive understanding of the 
 # 🛠 Before You Begin
 
 1. **Create a Galaxy user account** using your RCSI email: [Sign up here](https://usegalaxy.org/login/start?redirect=None).
-2. **Download the "data_files" folder** from [this link](https://rcsicampus-my.sharepoint.com/:f:/g/personal/laurawhelan_rcsi_com/EkI2pyMKZNxOjeDJOtqnB9EB3L5pV0j_TEIivBL5suTB7A?e=x4cKab).
-3. **Create a new "history"** within Galaxy named "ATT_NGS_LAB".
+2. **Download the **data_files** folder** from [this link](https://rcsicampus-my.sharepoint.com/:f:/g/personal/laurawhelan_rcsi_com/EkI2pyMKZNxOjeDJOtqnB9EB3L5pV0j_TEIivBL5suTB7A?e=x4cKab).
+3. **Create a new **history**** within Galaxy named **ATT_NGS_LAB**.
 
 ![Create New History](https://github.com/user-attachments/assets/4d6c3652-22f2-4612-ad62-ae78b5c13c4b)
 
-> **Note:** I have "pre-made" all the files for you. You're going to perform all the steps to make these files, but some of these steps take a long time computationally. That's why we have pre-made files ready for you, similar to a cooking show — *here’s one we made earlier!*
+> **Note:** I have **pre-made** all the files for you. You're going to perform all the steps to make these files, but some of these steps take a long time computationally. That's why we have pre-made files ready for you, similar to a cooking show — *here’s one we made earlier!*
 
 ---
 
@@ -44,18 +44,18 @@ By the end of this tutorial, you will have a comprehensive understanding of the 
 ## Data Preparation
 
 ### Steps
-1. **Upload your data** to your "ATT_NGS_LAB" history.
+1. **Upload your data** to your **ATT_NGS_LAB** history.
 2. **Check dataset types**: Ensure the datasets have their datatypes assigned correctly to `fastqsanger.gz`. Fix any missing or incorrect datatype assignments.
-3. **Tag datasets** as #father, #mother, or #child for the ".gz" files.
+3. **Tag datasets** as #father, #mother, or #child for the **.gz** files.
 
     - To tag a dataset:
       - Click on the dataset to expand it.
-      - Click on "Add Tags".
+      - Click on **Add Tags**.
       - Add the appropriate tag (tags starting with `#` will propagate to tool outputs).
       - Press Enter.
       - Check that the tag appears below the dataset name.
 
-4. **Update file type and genome build** for all ".gz" files:
+4. **Update file type and genome build** for all **.gz** files:
    - **Type**: fasta
    - **Genome**: Human Feb. 2009 (GRCh37/hg19) (hg19)
 
@@ -108,7 +108,7 @@ Earlier, you should have uploaded three `.bam` files — one for the father, one
 1. **Tag datasets** as `#father`, `#mother`, or `#child` for the `.bam` files:
    
    - Click on the dataset to expand it.
-   - Click on "Add Tags".
+   - Click on **Add Tags**.
    - Add the appropriate tag (tags starting with `#` will propagate to tool outputs).
    - Press Enter.
    - Check that the tag appears below the dataset name.
@@ -116,7 +116,7 @@ Earlier, you should have uploaded three `.bam` files — one for the father, one
 2. **Update database/build** for all `.bam` files:
    
    - Click the desired dataset’s name to expand it.
-   - Click on the “?” next to the database indicator:
+   - Click on the **?** next to the database indicator:
    
      ![Screenshot](https://github.com/user-attachments/assets/3e10afc7-6148-4433-b393-41f945126ada)
    
@@ -130,7 +130,7 @@ Earlier, you should have uploaded three `.bam` files — one for the father, one
 
    - **SAM/BAM/CRAM data set**: Select all three mapped reads datasets of the family trio (outputs of the BWA-MEM tool).
    - **What would you like to look at?**: A filtered/subsampled selection of reads
-   - **Configure filters**: “Exclude reads with any of the following flags set”: Read is unmapped and Mate is unmapped
+   - **Configure filters**: **Exclude reads with any of the following flags set**: Read is unmapped and Mate is unmapped
 
 4. **Removing duplicate reads**
 
@@ -152,7 +152,7 @@ FreeBayes is a Bayesian genetic variant detector designed to find small polymorp
     Run  **FreeBayes** with the following paramaters:
     -  **Choose the source for the reference genome**: Locally cached
     -  **Run in batch mode?**: Merge output VCFs
-    -  **param-files “BAM dataset(s)**: all three mapped reads datasets of the family trio; the outputs of RmDup
+    -  **param-files **BAM dataset(s)**: all three mapped reads datasets of the family trio; the outputs of RmDup
     -  **Using reference genome**: Human: hg19 (or a similarly named option)
     -  **Limit variant calling to a set of regions?**: Do not limit
     -  **Choose parameter selection level**: 1. Simple diploid calling
@@ -171,3 +171,52 @@ You have created you first multisample VCF file, one of the most complicated fil
 # 🧬 Lab: Next-Generation Sequencing Analysis 2 🧬
 
 At the end of our last lab we created a multiple sample VCF file - now it's time to do some postprocessing and also annotate the file to make it easier for us to read. 
+
+# Let's Get Started
+> **There will be a video to follow on screen!**
+
+# #Inspect the VCF output produced by FreeBayes
+
+### Steps
+**Display the VCF dataset**:
+- Click the galaxy-eye icon next to the VCF dataset generated by FreeBayes to display its contents.
+- VCF is a tabular plain text format though its information density makes it complicated to understand.
+
+### Question 
+Can you locate at least some of the above-listed information in the dataset?
+Hints:
+- Lines starting with ## are comment lines explaining the content of the file.
+- Diploid genotypes at biallelic sites are encoded using 0/0, 0/1 and 1/1 to represent homozygous reference, heterozygous and homozygous variant states, respectively.
+
+## Inspect the VCF output produced by FreeBayes
+
+### Steps
+
+1. Run **bcftools norm** with the following parameters:
+- **VCF/BCF Data**: the VCF output of FreeBayes tool
+- **Choose the source for the reference genome**: Use a built-in genome
+- **Reference genome**: Human: hg19 (or a similarly named option)
+- **When any REF allele does not match the reference genome base**: ignore the problem (-w)
+- **Atomize**: No
+- **Left-align and normalize indels?**: Yes
+- **Perform deduplication for the folowing types of variant records**: do not deduplicate any records (Freebayes is not producing any duplicate calls).
+- **~multiallelics**: split multiallelic sites into biallelic records (-)
+    - **split the following variant types**: both
+- **output_type**: uncompressed VCF
+
+## Variant annotation and reporting
+
+A list of variants detected in a set of samples is a start, but to discover biologically or clinically relevant information in it is almost impossible without some additional tools and data. In particular, the variants in the list need to be:
+- prioritized with respect to their potential relevance for the biological / clinical phenotype that is studied
+
+    Even with exome sequencing, only a fraction of the detected variants will have a clear impact on the function of a protein (many variants will introduce silent mutations, or reside in intronic regions still covered by     the exome-enriched sequencing data). Of these, many will have been observed before in healthy individuals arguing against them playing an important role in an adverse phenotype.
+
+- filtered based on the inheritance pattern expected for a causative variant
+
+    A multisample VCF file records the most likely genotypes of all samples at every variant site. Knowing which individuals (samples) are affected by a phenotype we can exclude variants with inheritance patterns that are     incompatible with the observed inheritance of the phenotype.
+
+- reported in a more human-friendly form
+
+    While the VCF format can be used to encode all relevant information about any variant, it is hard for humans to parse that information.
+    
+    Ideally, one would like to generate simpler reports for any set of filtered and prioritized variants.
