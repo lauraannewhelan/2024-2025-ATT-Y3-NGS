@@ -1,4 +1,44 @@
+# 🧬 Lab: Next-Generation Sequencing Analysis 1 & 2 🧬
+
+In this lab, we will guide you through the essential steps involved in processing high-quality reads from Next-Generation Sequencing (NGS) and mapping them to a reference genome. You will learn how to perform quality control on short-read NGS data, map high-quality reads, and understand the post-mapping processes necessary for effective variant calling and annotation. 
+
+By the end of this tutorial, you will have a comprehensive understanding of the entire workflow, including:
+- Data preparation
+- Quality control
+- Read mapping
+- Generation of variant databases
+
+## Learning Outcomes
+
+### NGS Analysis 1
+- Review the structure and origin of sequencing reads.
+- Outline the file formats in which reads and mapped reads are stored.
+- Describe the basic quality control steps necessary for processing read data.
+- Describe the process of read mapping.
+
+### NGS Analysis 2
+- Understand the motivation to identify variants from NGS data in a clinical setting.
+- Describe the GATK best practices for variant identification.
+- Describe the file formats in which variants are stored.
+- Outline the primary measures of variant quality control.
+
+---
+
+# 🛠 Before You Begin
+
+1. **Create a Galaxy user account** using your RCSI email: [Sign up here](https://usegalaxy.org/login/start?redirect=None).
+2. **Download the "data_files" folder** from [this link](https://rcsicampus-my.sharepoint.com/:f:/g/personal/laurawhelan_rcsi_com/EkI2pyMKZNxOjeDJOtqnB9EB3L5pV0j_TEIivBL5suTB7A?e=x4cKab).
+3. **Create a new "history"** within Galaxy named "ATT_NGS_LAB".
+
+![Create New History](https://github.com/user-attachments/assets/4d6c3652-22f2-4612-ad62-ae78b5c13c4b)
+
+> **Note:** I have "pre-made" all the files for you. You're going to perform all the steps to make these files, but some of these steps take a long time computationally. That's why we have pre-made files ready for you, similar to a cooking show — *here’s one we made earlier!*
+
+---
+
+# 🧬 Lab: Next-Generation Sequencing Analysis 1 🧬
  
+
 # Exome sequencing data analysis for diagnosing a genetic disease
 
 
@@ -57,6 +97,10 @@ The identification of causative variants underlying any particular genetic disea
 >     3.  [Generating a GEMINI database of variants for further annotation and efficient variant queries](#generating-a-gemini-database-of-variants-for-further-annotation-and-efficient-variant-queries)
 >     4.  [Candidate variant detection](#candidate-variant-detection)
 > 7.  [Conclusion](#conclusion)
+>
+
+# Let's Get Started
+> **There will be a video to follow on screen!**
 
 # Data Preparation
 
