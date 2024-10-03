@@ -32,18 +32,16 @@
 > - How do you identify genetic variants in samples based on exome sequencing data?
 > - How do you, among the set of detected variants, identify candidate causative variants for a given phenotype/disease?
 
-**Objectives:**
-
-- Jointly call variants and genotypes for a family trio from whole-exome sequencing data.
-- Use variant annotation and the observed inheritance pattern of a phenotype to identify candidate causative variants and prioritize them.
+> **Objectives:**
+> 
+> - Jointly call variants and genotypes for a family trio from whole-exome sequencing data.
+> - Use variant annotation and the observed inheritance pattern of a phenotype to identify candidate causative variants and prioritize them.
 
 Exome sequencing is a method that enables the selective sequencing of the exonic regions of a genome — that is, the transcribed parts of the genome present in mature mRNA, including protein-coding sequences and untranslated regions (UTRs).
 
-In humans, there are about 180,000 exons with a combined length of ~30 million base pairs (30 Mb). Thus, the exome represents only 1% of the human genome, but it has been estimated to harbor up to 85% of all disease-causing variants ([Choi et al., 2009](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2768590/)).
+In humans, there are about 180,000 exons with a combined length of ~30 million base pairs (30 Mb). 
 
-Exome sequencing offers an affordable alternative to whole-genome sequencing in the diagnosis of genetic diseases, while still covering more potential disease-causing variant sites than genotyping arrays. This is especially relevant in rare genetic diseases, where causative variants may occur at too low a frequency to be included on genotyping arrays.
-
-A recent study in clinical pediatric neurology indicates that the costs of exome sequencing may actually not be higher than conventional genetic testing ([Vissers et al., 2017](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5589982/)).
+Exome sequencing offers an affordable alternative to whole-genome sequencing in the diagnosis of genetic diseases. 
 
 > **Details: Exome Sequencing _vs_ Whole-Genome Sequencing**  
 > 
@@ -57,7 +55,7 @@ Identifying causative variants for a genetic disease requires variant comparison
 
 > **Agenda**  
 > 
-> In this tutorial, we will cover:
+> Across these 2 labs, we will cover:
 > 
 > 1. [Data Preparation](#data-preparation)
 >    - [Get data](#get-data)
@@ -92,54 +90,28 @@ In this tutorial, we will analyze exome sequencing data from a family trio, wher
 
 ## Get Data
 
-This tutorial offers **two alternative entry points** allowing you to:
-
-- Conduct a full analysis starting from original sequenced reads in `fastq` format, or
-- Start your analysis with pre-mapped reads in `bam` format that are (almost) ready for variant calling.
-
-The following section will guide you in obtaining the data for either analysis.
-
 ### Hands-on: Data Upload
 
-1. **Create a new history** for this tutorial and give it a meaningful name.
-
+1. **Create a new history** for this tutorial and called ATT_NGS_ANALYSIS
    > **Tip: Creating a New History**
-   > - Click the new-history icon at the top of the history panel:  
-   >   ![UI for creating new history](/training-material/shared/images/history_create_new.svg)
+   > - Click the new-history icon at the top of the history panel
    > - **Tip: Renaming a History**  
    >   1. Click the galaxy-pencil (**Edit**) next to the history name (default: “Unnamed history”)  
    >   2. Type the new name  
    >   3. Click **Save**  
-   >   4. To cancel renaming, click the galaxy-undo “Cancel” button.
+   >   4. To cancel renaming, click the “Cancel” button.
+   >   5. Upload the data you downloaded earlier (fastq.gz)
 
-2. **Obtain the raw sequencing data**.
 
-3. **Check** that the newly created datasets have their datatypes correctly assigned to `fastqsanger.gz`. Fix any missing or incorrect datatype assignment.
+2. **Check** that the newly created datasets have their datatypes correctly assigned to `fastqsanger.gz`. Fix any missing or incorrect datatype assignment.
 
    > **Tip: Changing the Datatype**  
    > - Click the galaxy-pencil **pencil icon** for the dataset.  
    > - In the central panel, click the **Datatypes** tab.  
    > - Select `fastqsanger.gz` from the dropdown list and click **Save**.
 
-4. **Obtain the pre-mapped sequencing data**.
 
-5. **Check** that the newly created datasets have their datatypes correctly assigned to `bam`. Fix any missing or incorrect datatype assignment.
-
-6. **Specify the genome version used for mapping**. Change the database/build (dbkey) for each `bam` dataset to `hg19`.
-
-   > **Tip: Changing Database/Build (dbkey)**  
-   > - Click the desired dataset’s name to expand it.  
-   > - Click the “?” next to the database indicator:  
-   >   ![UI for changing dbkey](/training-material/shared/images/datasets_dbkey.svg)  
-   > - Change the **Database/Build** field to `Human Feb. 2009 (GRCh37/hg19)` and click **Save**.
-
-7. **Rename the datasets** [NOT NEEDED IN THIS TUTORIAL!].
-
-   > **Tip: Renaming a Dataset**  
-   > - Click the galaxy-pencil **pencil icon** for the dataset to edit its attributes.  
-   > - Change the **Name** field and click **Save**.
-
-8. **Add tags** (#father, #mother, #child) to the datasets.
+3. **Add tags** (#father, #mother, #child) to the datasets.
 
    > **Tip: Adding a Tag**  
    > - Click on the dataset to expand it.  
@@ -149,9 +121,6 @@ The following section will guide you in obtaining the data for either analysis.
 
 **Congratulations!** You are all set for starting the analysis now.
 
-If you have chosen to follow the complete analysis from the original sequenced data, just proceed with the next section.
-
-If, on the other hand, you have prepared to start from the pre-mapped data, skip the sections on _Quality control_ and _Read mapping_, and continue with **Mapped reads postprocessing**.
 
 # Quality Control
 
@@ -224,13 +193,12 @@ Now that you’ve confirmed that the quality of the input data is good enough fo
 
 # Mapped Reads Postprocessing
 
-At this point, you should have three mapped reads datasets in `bam` format, each of which:
+Mapping takes a considerable amount of time, so we'll proceed with the 3 "pre-made" mapped reads datasets in `bam` format, each of which:
 
 - Has its _database_ set to the key `hg19`.
     > **Tip: Changing database/build (dbkey)**
     > 1. Click the dataset’s name to expand it.
     > 2. Click on the “?” next to the database indicator:  
-    >    ![UI for changing dbkey](/training-material/shared/images/datasets_dbkey.svg)
     > 3. In the central panel, change the **Database/Build** field to `Human Feb. 2009 (GRCh37/hg19) (hg19)`.
     > 4. Click **Save**.
 
@@ -270,7 +238,6 @@ This will generate three new datasets for the family trio.
 
 With the sequenced reads of all samples mapped and post-processed, we can start looking for evidence of sequence deviations, _i.e._, variants, between the sequenced genomic samples and the reference genome.
 
-This task has been automated and optimized over the last decade, and modern variant-calling software hides much of the complexity involved. However, a basic understanding of the underlying concepts is still highly recommended. If you are new to variant calling, the tutorial on [Calling variants in diploid systems](../dip/tutorial.html) is a great starting point.
 
 ## Generating FreeBayes Calls
 
@@ -487,3 +454,6 @@ While whole-exome sequencing of family trios may not always point to just one ca
 2. Hiltemann, Saskia, Rasche, Helena et al., 2023 **Galaxy Training: A Powerful Framework for Teaching!** PLOS Computational Biology. [10.1371/journal.pcbi.1010752](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010752).
 
 3. Batut et al., 2018 **Community-Driven Data Analysis Training for Biology** Cell Systems. [10.1016/j.cels.2018.05.012](https://doi.org/10.1016%2Fj.cels.2018.05.012).
+
+### Questions? Contact laurawhelan@rcsi.ie
+
