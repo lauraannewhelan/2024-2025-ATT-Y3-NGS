@@ -161,11 +161,6 @@ Now that you’ve confirmed that the quality of the input data is good enough fo
 > 1. **Map with BWA-MEM** (Galaxy version 0.7.17.2) to map the reads from the **father** sample to the reference genome:
 >     * _“Will you select a reference genome from your history or use a built-in index?”_: `Use a built-in genome index`.
 >         * _“Using reference genome”_: `Human: hg19` (or similar option).
->         
->         > **Comment:** Using the imported `hg19` sequence
->         > If you’ve imported the `hg19` chr8 sequence as a fasta dataset into your history:
->         > * _“Will you select a reference genome from your history or use a built-in index?”_: `Use a genome from history and build index`.
->         > * _“Use the following dataset as the reference sequence”_: Your imported `hg19` fasta dataset.
 >     
 >     * _“Single or Paired-end reads”_: `Paired`.
 >         * _“Select first set of reads”_: Forward reads (R1) of the **father** sample.
