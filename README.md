@@ -3,16 +3,14 @@
 ## Learning Outcomes
 
 ### NGS Analysis 1
-- Review the structure and origin of sequencing reads.
-- Outline the file formats in which reads and mapped reads are stored.
-- Describe the basic quality control steps necessary for processing read data.
-- Explain the process of read mapping.
+- Review the process of processing high quality reads and mapping to a reference genome.	
+- Perform quaity control of short-read NGS data.	 
+- Carrying out mapping of high-quality reads to a reference genome.		
 
 ### NGS Analysis 2
-- Understand the motivation to identify variants from NGS data in a clinical setting.
-- Describe the GATK best practices for variant identification.
-- Describe the file formats in which variants are stored.
-- Outline the primary measures of variant quality control.
+- Review the file structure which stores discovered variants.
+- Outline the quality control parameters that are used to filter detected variants in NGS analysis.
+- Perform filtering of NGS genotype data to identify a variant of interest.
 
 ---
 
