@@ -17,7 +17,7 @@
 # 🛠 Before You Begin
 
 1. **Create a Galaxy user account** using your RCSI email: [Sign up here](https://usegalaxy.org/login/start?redirect=None).
-2. **Download the "data_files" folder** from [this link](https://rcsicampus-my.sharepoint.com/:f:/g/personal/laurawhelan_rcsi_com/EkI2pyMKZNxOjeDJOtqnB9EB3L5pV0j_TEIivBL5suTB7A?e=x4cKab).
+2. **Download the fastq.gz files ** from [this link](https://rcsicampus-my.sharepoint.com/:f:/g/personal/laurawhelan_rcsi_com/EkI2pyMKZNxOjeDJOtqnB9EB3L5pV0j_TEIivBL5suTB7A?e=x4cKab).
 
 > **Note:** I have "pre-made" all the files for you. You're going to perform all the steps to make these files, but some of these steps take a long time computationally. That's why we have pre-made files ready for you, similar to a cooking show — *here’s one we made earlier!*
 
@@ -154,33 +154,9 @@ Some typical problems with NGS data can be mitigated by preprocessing affected s
 
 # Read Mapping
 
-Now that you’ve confirmed that the quality of the input data is good enough for further analysis, it’s time to map the reads to the reference genome.
+Now that you’ve confirmed that the quality of the input data is good enough for further analysis, it’s time to map the reads to the reference genome. However, read mapping can take a long time amd we have limited time in the lab so you can use the pre-mapped bam files we have prepared from [this link](https://rcsicampusmy.sharepoint.com/:f:/g/personal/laurawhelan_rcsi_com/EkI2pyMKZNxOjeDJOtqnB9EB3L5pV0j_TEIivBL5suTB7A?e=x4cKab).
 
-> **Hands-on: Read Mapping**
-> 
-> 1. **Map with BWA-MEM** (Galaxy version 0.7.17.2) to map the reads from the **father** sample to the reference genome:
->     * _“Will you select a reference genome from your history or use a built-in index?”_: `Use a genome from history and build index`.
->         * _“Using reference genome”_: `Human: hg19` (or similar option).
->     
->     * _“Single or Paired-end reads”_: `Paired`.
->         * _“Select first set of reads”_: Forward reads (R1) of the **father** sample.
->         * _“Select second set of reads”_: Reverse reads (R2) of the **father** sample.
->         
->         > **Tip: No FASTQ datasets selectable?**
->         > Ensure the dataset format is `fastqsanger.gz`.
->         
->     * _“Set read groups information?”_: `Set read groups (SAM/BAM specification)`.
->         * _“Auto-assign”_: `No`.
->             * _“Read group identifier (ID)”_: `000`.
->             * _“Read group sample name (SM)”_: `father`.
->     
-> 2. Repeat the process for the **mother** and **child** samples, adjusting the following parameters:
->     - **Mother** sample:  
->         * _“Read group identifier (ID)”_: `001`.  
->         * _“Read group sample name (SM)”_: `mother`.
->     - **Child** sample:  
->         * _“Read group identifier (ID)”_: `002`.  
->         * _“Read group sample name (SM)”_: `proband`.
+These files are exactly the same as the output you would get if you ran a tool called **BWA-MEM** on a reference genome and fastq.gz files. 
 
 ---
 
