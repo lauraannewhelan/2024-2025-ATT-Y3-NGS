@@ -154,10 +154,41 @@ Some typical problems with NGS data can be mitigated by preprocessing affected s
 
 # Read Mapping
 
-Now that you’ve confirmed that the quality of the input data is good enough for further analysis, it’s time to map the reads to the reference genome. However, read mapping can take a long time amd we have limited time in the lab so you can use the pre-mapped bam files we have prepared from [this link](https://rcsicampus-my.sharepoint.com/:f:/g/personal/laurawhelan_rcsi_com/EkI2pyMKZNxOjeDJOtqnB9EB3L5pV0j_TEIivBL5suTB7A?e=x4cKab).
+# Mapping Reads with BWA-MEM (Galaxy version 0.7.17.2)
+
+## 1. Map the Reads  
+- **Task**: Map the reads from the father sample to the reference genome.
+
+- **Reference Genome Selection**:
+  - **Prompt**: “Will you select a reference genome from your history or use a built-in index?”
+  - **Selection**: Use a built-in genome index.
+  - **Using Reference Genome**: Human: hg19 (or a similarly named option).
+  - **Comment**: Using the imported `hg19` sequence.
+
+- **If using imported hg19 chr8 sequence as a FASTA dataset**:
+  - **Prompt**: “Will you select a reference genome from your history or use a built-in index?”
+  - **Selection**: Use a genome from history and build index.
+  - **Param-file**: “Use the following dataset as the reference sequence”: your imported hg19 FASTA dataset.
+
+## 2. Read Type Selection:
+- **Single or Paired-end reads**: Paired.
+- **Param-file**: “Select first set of reads”: the forward reads (R1) dataset of the father sample.
+- **Param-file**: “Select second set of reads”: the reverse reads (R2) dataset of the father sample.
+- **Tip**: No FASTQ datasets selectable?
+
+## 3. Read Groups Information:
+- **Set read groups information?**: Set read groups (SAM/BAM specification).
+- **Auto-assign**: No.
+- **Read group identifier (ID)**: 000.
+- **Auto-assign**: No.
+- **Read group sample name (SM)**: father.
+
+## 3. Repeat for mother and proband
+
+Read mapping can take a long time and we have limited time in the lab so you can use the pre-mapped bam files we have prepared from [this link](https://rcsicampus-my.sharepoint.com/:f:/g/personal/laurawhelan_rcsi_com/EkI2pyMKZNxOjeDJOtqnB9EB3L5pV0j_TEIivBL5suTB7A?e=x4cKab).
 
 
-These files are exactly the same as the output you would get if you ran a tool called **BWA-MEM** on a reference genome and fastq.gz files. 
+These files are exactly the same as the output you would get. 
 
 ---
 
