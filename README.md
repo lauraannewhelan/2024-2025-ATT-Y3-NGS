@@ -163,12 +163,6 @@ Mapping reads correctly is crucial, as misaligned reads can lead to erroneous co
 > 1. **Map the Reads**:
 >     - **Task**: Map the reads from the father sample to the reference genome.
 >
->     - **Reference Genome Selection**:
->         - **Prompt**: “Will you select a reference genome from your history or use a built-in index?”
->         - **Selection**: Use a built-in genome index.
->         - **Using Reference Genome**: Human: hg19 (or a similarly named option).
->         - **Comment**: Using the imported `hg19` sequence.
->
 >     - **If using imported hg19 chr8 sequence as a FASTA dataset**:
 >         - **Prompt**: “Will you select a reference genome from your history or use a built-in index?”
 >         - **Selection**: Use a genome from history and build index.
