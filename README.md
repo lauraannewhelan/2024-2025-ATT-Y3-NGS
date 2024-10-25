@@ -181,7 +181,7 @@ Mapping reads correctly is crucial, as misaligned reads can lead to erroneous co
 >     - **Auto-assign**: No.
 >     - **Read group sample name (SM)**: father.
 
-> 4. **Repeat for Mother and Proband**:
+> 4. **Repeat for Mother (001) and Proband (002)**:
 >     - Follow the same steps above to map the reads for the mother and proband samples, ensuring each has distinct read group identifiers.
 
 
