@@ -411,11 +411,6 @@ Let’s now search for variants that could explain the boy’s osteopetrosis phe
 > Which inheritance patterns fit the family trio's phenotypic observations?  
 > _Hint: GEMINI allows you to search for patterns such as autosomal recessive, de novo, compound heterozygous, and loss of heterozygosity (LOH)._
 
-> **Solution:**
-> 
-> - The variant cannot be dominant and inherited since both parents are unaffected.
-> - A de novo dominant or X-linked recessive mutation is possible.
-> - The most likely scenario, given the consanguinity, is a recessive variant.
 
 We will start by looking for inherited autosomal recessive variants.
 
