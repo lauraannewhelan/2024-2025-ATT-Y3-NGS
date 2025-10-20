@@ -147,7 +147,7 @@ This step involves mapping the sequenced reads from the father sample to the ref
 
 Mapping reads correctly is crucial, as misaligned reads can lead to erroneous conclusions in downstream analyses.
 
-> **Hands-on: Mapping Reads with BWA-MEM**
+> **Hands-on: Mapping Reads with BWA-MEM version 0.7.18**
 > 
 > 1. **Map the Reads**:
 >     - **Task**: Map the reads from the father sample to the reference genome.
