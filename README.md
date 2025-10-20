@@ -17,9 +17,6 @@
 # 🛠 Before You Begin
 
 1. **Create a Galaxy user account** using your RCSI email: [Sign up here](https://usegalaxy.org/login/start?redirect=None).
-2. **Download the fastq.gz files ** from [this link](https://rcsicampus-my.sharepoint.com/:f:/g/personal/laurawhelan_rcsi_com/EkI2pyMKZNxOjeDJOtqnB9EB3L5pV0j_TEIivBL5suTB7A?e=x4cKab).
-
-> **Note:** I have "pre-made" all the files for you. You're going to perform all the steps to make these files, but some of these steps take a long time computationally. That's why we have pre-made files ready for you, similar to a cooking show — *here’s one we made earlier!*
 
 ---
 
@@ -98,7 +95,7 @@ In this tutorial, we will analyze exome sequencing data from a family trio, wher
    >   2. Type the new name  
    >   3. Click **Save**  
    >   4. To cancel renaming, click the “Cancel” button.
-   >   5. Upload the data you downloaded earlier (fastq.gz)
+   >   5. Copy this history https://galaxy-main.usegalaxy.org/u/laura_whelan/h/att-y3-ngs-2025
 
 
 2. **Check** that the newly created datasets have their datatypes correctly assigned to `fastqsanger.gz`. Fix any missing or incorrect datatype assignment.
