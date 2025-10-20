@@ -85,18 +85,10 @@ In this tutorial, we will analyze exome sequencing data from a family trio, wher
 
 ## Get Data
 
-### Hands-on: Data Upload
+### Hands-on: Data retrieval
 
-1. **Create a new history** for this tutorial and called ATT_NGS_ANALYSIS
-   > **Tip: Creating a New History**
-   > - Click the new-history icon at the top of the history panel
-   > - **Tip: Renaming a History**  
-   >   1. Click the galaxy-pencil (**Edit**) next to the history name (default: “Unnamed history”)  
-   >   2. Type the new name  
-   >   3. Click **Save**  
-   >   4. To cancel renaming, click the “Cancel” button.
-   >   5. Copy this history https://galaxy-main.usegalaxy.org/u/laura_whelan/h/att-y3-ngs-2025
-
+1. **Import the history** for this tutorial https://usegalaxy.org/u/laura_whelan/h/att-y3-ngs-2025-1. This contains the files you need to get started.
+  
 
 2. **Check** that the newly created datasets have their datatypes correctly assigned to `fastqsanger.gz`. Fix any missing or incorrect datatype assignment.
 
