@@ -174,8 +174,8 @@ Mapping reads correctly is crucial, as misaligned reads can lead to erroneous co
 >     - Follow the same steps above to map the reads for the mother and proband samples, ensuring each has distinct read group identifiers.
 
 
-Read mapping can take a long time and we have limited time in the lab so you can use the pre-mapped bam files we have prepared from [this link](https://rcsicampus-my.sharepoint.com/:f:/g/personal/laurawhelan_rcsi_com/EkI2pyMKZNxOjeDJOtqnB9EB3L5pV0j_TEIivBL5suTB7A?e=x4cKab).
-
+Read mapping can take a long time and we have limited time in the lab so you can use the pre-mapped bam files we have prepared from 
+https://galaxy-main.usegalaxy.org/u/laura_whelan/h/att-y3-ngs-2025-bam
 
 These files are exactly the same as the output you would get. 
 
