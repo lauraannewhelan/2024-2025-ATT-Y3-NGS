@@ -375,6 +375,10 @@ Let’s now search for variants that could explain the boy’s phenotype. Here a
 > The parents are consanguinous:
 >     * what inheritance pattern does that indicate to you? Is there a way we can filter for genotypes?
 
+> 2. **SnpSift Filter** (Galaxy version 4.3+t.galaxy1):
+>     * _“Input variant list in VCF format *”_: The output from **SnpSift Filter**.
+>     * _“Type of filter expression *”_: Simple expression.
+>     * Filter criteria: 
 ```bash
 (
   (GEN[proband].GT = '1/1' | GEN[proband].GT = '1|1') &
@@ -387,6 +391,11 @@ Let’s now search for variants that could explain the boy’s phenotype. Here a
 >     * which one is the more likely disease causing candidate?
 >     * Think about variant type..
 >     * Try..
+
+> 3. **SnpSift Filter** (Galaxy version 4.3+t.galaxy1):
+>     * _“Input variant list in VCF format *”_: The output from **SnpSift Filter**.
+>     * _“Type of filter expression *”_: Simple expression.
+>     * Filter criteria: 
 
 ```bash
 (ANN[*].EFFECT has 'stop_gained')
