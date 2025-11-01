@@ -65,7 +65,6 @@ Identifying causative variants for a genetic disease requires variant comparison
 > 6. [Variant Annotation and Reporting](#variant-annotation-and-reporting)
 >    - [Get Data](#get-data-1)
 >    - [Variant Annotation with Functional Genomic Effects](#variant-annotation-with-functional-genomic-effects)
->    - [Generating a GEMINI Database](#generating-a-gemini-database)
 >    - [Candidate Variant Detection](#candidate-variant-detection)
 > 7. [Conclusion](#conclusion)
 
@@ -308,37 +307,18 @@ Detecting variants is just the beginning. To discover biologically or clinically
 
 - **Prioritize** variants based on their relevance to the phenotype of interest.
 - **Filter** variants based on inheritance patterns, especially when working with multisample data.
-- **Report** variants in a more human-readable format than VCF.
-
-We will use the **GEMINI** framework for variant annotation and reporting. Additionally, we need **SnpEff** to annotate variants with their functional genomic effects.
 
 ## Get Data
 
-The **SnpEff** tool will annotate the functional effects of variants, while **GEMINI** will handle further annotation and reporting.
+The **SnpEff** tool will annotate the functional effects of variants.
 
-> **Hands-on: Obtain SnpEff genome and GEMINI pedigree files**
+> **Hands-on: Obtain SnpEff genome**
 > 
 > 1. **Download SnpEff functional genomic annotations**
 >     > **Comment:** Shortcut
 >     > If your Galaxy server has `Homo sapiens: hg19` as a locally installed SnpEff database, you can skip this step. Check the **Genome source** list in the **SnpEff eff** tool.
 >     
 >     Use **SnpEff Download** (Galaxy version 4.3+T.galaxy2) to download the genome annotation database `hg19`.
->     
-> 2. Create a PED-formatted pedigree dataset for the family trio:
->     
->     ```
->     #family_id    name     paternal_id    maternal_id    sex    phenotype
->     FAM           father   0              0              1      1
->     FAM           mother   0              0              2      1
->     FAM           proband  father         mother         1      2
->     ```
->     
->     Set its datatype to `tabular`.
->     
->     > **Tip: Creating a new file**
->     > * Click galaxy-upload **Upload Data**.
->     > * Select galaxy-wf-edit **Paste/Fetch Data** and paste the file contents.
->     > * Set **Type** to `tabular` and press **Start**.
 
 ---
 
@@ -374,47 +354,36 @@ The result will include a _Summary Stats_ HTML report and the annotated VCF file
 
 ---
 
-## Generating a GEMINI Database for Further Annotation
+## Candidate Variant Detection - Develop a filtering strategy
 
-Next, we will use **GEMINI** to annotate the variants further and store them in a queryable SQL database.
+Let’s now search for variants that could explain the boy’s phenotype. Here are some points to think about.. 
 
-> **Hands-on: Creating a GEMINI database from a variants dataset**
-> 
-> 1. **GEMINI load** (Galaxy version 0.20.1+galaxy2):
->     * _“VCF dataset to be loaded in the GEMINI database”_: The output from **SnpEff eff**.
->     * _“The variants in this input are”_: `annotated with snpEff`
->     * _“This input comes with genotype calls for its samples”_: `Yes`
->     * _“Sample and family information in PED format”_: The pedigree file created earlier.
->     * _“Load the following optional content into the database”_: Check `GERP scores`, `CADD scores`, `Gene tables`, `Sample genotypes`, and `variant INFO field`.
+> 1. The boy has osteopetrosis:
+>     * what genes are associated with this condition? Check https://www.ebi.ac.uk/gene2phenotype/ and see what the first gene that comes up is. 
 
-Running this job will generate a GEMINI-specific database.
+```bash
+(ANN[*].GENE = 'CA2')
+```
 
----
+> 2. The parents are consanguinous:
+>     * what inheritance pattern does that indicate to you? Is there a way we can filter for genotypes?
 
-## Candidate Variant Detection
+```bash
+(
+  (GEN[proband].GT = '1/1' | GEN[proband].GT = '1|1') &
+  ((GEN[mother].GT = '0/1' | GEN[mother].GT = '1/0' | GEN[mother].GT = '0|1' | GEN[mother].GT = '1|0')) &
+  ((GEN[father].GT = '0/1' | GEN[father].GT = '1/0' | GEN[father].GT = '0|1' | GEN[father].GT = '1|0'))
+)
+```
 
-Let’s now search for variants that could explain the boy’s osteopetrosis phenotype. The parents are consanguineous, but unaffected, so we can make some assumptions about the inheritance pattern.
+> 3. You should be left with 2 possible variants:
+>     * which one is the more likely disease causing candidate?
+>     * Think about variant type..
+>     * Try..
 
-> **Question:**
-> 
-> Which inheritance patterns fit the family trio's phenotypic observations?  
-> _Hint: GEMINI allows you to search for patterns such as autosomal recessive, de novo, compound heterozygous, and loss of heterozygosity (LOH)._
-
-
-We will start by looking for inherited autosomal recessive variants.
-
-> **Hands-on: Finding and reporting plausible causative variants**
-> 
-> 1. **GEMINI inheritance pattern** (Galaxy version 0.20.1):
->     * _“GEMINI database”_: The GEMINI database of annotated variants (output from **GEMINI load**).
->     * _“Your assumption about the inheritance pattern”_: `Autosomal recessive`.
->     * _“Additional constraints expressed in SQL syntax”_: `impact_severity != 'LOW'` (to prioritize functionally impactful variants).
->     * _“Include hits with less convincing inheritance patterns”_: `No`.
->     * _“Report candidates shared by unaffected samples”_: `No`.
->     * _“Output - included information”_:
->         * _“Set of columns to include”_: `Custom (report user-specified columns)`.
->             * Add `alternative allele frequency (max_aaf_all)` and include: `chrom, start, ref, alt, impact, gene, clinvar_sig, clinvar_disease_name, clinvar_gene_phenotype, rs_ids`.
-
+```bash
+(ANN[*].EFFECT has 'stop_gained')
+```
 
 # Conclusion
 
@@ -428,7 +397,7 @@ While whole-exome sequencing of family trios may not always point to just one ca
 > 
 > - **FreeBayes** is a reliable variant and genotype caller for the joint analysis of multiple samples. It is easy to use and requires minimal processing of mapped reads.
 > 
-> - **Variant annotation** and the ability to leverage genotype information across family members are key to identifying candidate disease variants. **SnpEff** and **GEMINI** are particularly powerful tools available in Galaxy for this purpose.
+> - **Variant annotation** and the ability to leverage genotype information across family members are key to identifying candidate disease variants. 
 
 ---
 
