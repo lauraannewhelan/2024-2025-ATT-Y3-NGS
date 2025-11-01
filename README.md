@@ -355,30 +355,44 @@ The result will include a _Summary Stats_ HTML report and the annotated VCF file
 ---
 
 
-Filter variants using arbitrary expressions
-(Galaxy Version )
-## Candidate Variant Detection - Develop a filtering strategy
 
-Let’s now search for variants that could explain the boy’s phenotype. Here are some points to think about.. 
+## 🧬 Candidate Variant Detection – Developing a Filtering Strategy
 
-> The boy has osteopetrosis:
->     * what genes are associated with this condition? Check https://www.ebi.ac.uk/gene2phenotype/ and see what the first gene that comes up is. 
+Let’s now search for variants that could explain the boy’s phenotype. Consider the following steps and questions:
 
-> 1. **SnpSift Filter** (Galaxy version 4.3+t.galaxy1):
->     * _“Input variant list in VCF format *”_: The output from **SnpEff eff**.
->     * _“Type of filter expression *”_: Simple expression.
->     * Filter criteria: 
+---
+
+### 🦴 Step 1: Phenotype-Based Filtering
+
+**The boy has osteopetrosis**  
+To begin, investigate which genes are associated with this condition.
+
+- Visit: [Gene2Phenotype – EBI](https://www.ebi.ac.uk/gene2phenotype/)
+- Look up osteopetrosis and identify the first gene that appears (hint: it's likely **CA2**).
+
+**Filter using `SnpSift Filter` (Galaxy version 4.3+t.galaxy1):**
+
+- **Input variant list in VCF format:** Output from **SnpEff eff**  
+- **Type of filter expression:** Simple expression  
+- **Filter criteria:**
+
 ```bash
 (ANN[*].GENE = 'CA2')
 ```
 
-> The parents are consanguinous:
->     * what inheritance pattern does that indicate to you? Is there a way we can filter for genotypes?
+---
 
-> 2. **SnpSift Filter** (Galaxy version 4.3+t.galaxy1):
->     * _“Input variant list in VCF format *”_: The output from **SnpSift Filter**.
->     * _“Type of filter expression *”_: Simple expression.
->     * Filter criteria: 
+### 👪 Step 2: Inheritance Pattern Filtering
+
+**The parents are consanguineous**  
+This suggests a likely **recessive inheritance pattern**. We want to filter for **homozygous variants in the proband** and **heterozygous in both parents**.
+
+**Filter using `SnpSift Filter` (Galaxy version 4.3+t.galaxy1):**
+
+- **Input variant list in VCF format:** Output from the previous **SnpSift Filter**  
+- **Type of filter expression:** Simple expression  
+- **Filter criteria:**
+
 ```bash
 (
   (GEN[proband].GT = '1/1' | GEN[proband].GT = '1|1') &
@@ -387,19 +401,28 @@ Let’s now search for variants that could explain the boy’s phenotype. Here a
 )
 ```
 
-> You should be left with 2 possible variants:
->     * which one is the more likely disease causing candidate?
->     * Think about variant type..
->     * Try..
+---
 
-> 3. **SnpSift Filter** (Galaxy version 4.3+t.galaxy1):
->     * _“Input variant list in VCF format *”_: The output from **SnpSift Filter**.
->     * _“Type of filter expression *”_: Simple expression.
->     * Filter criteria: 
+### 🧪 Step 3: Prioritize Likely Pathogenic Variants
+
+After filtering, you should be left with **two candidate variants**.
+
+Ask yourself:
+
+- Which one is the more likely **disease-causing** variant?
+- Consider **variant type** (e.g., missense vs. nonsense).
+- Use additional filtering to prioritize:
+
+**Filter using `SnpSift Filter` (Galaxy version 4.3+t.galaxy1):**
+
+- **Input variant list in VCF format:** Output from previous step  
+- **Type of filter expression:** Simple expression  
+- **Filter criteria:**
 
 ```bash
 (ANN[*].EFFECT has 'stop_gained')
 ```
+
 
 # Conclusion
 
