@@ -395,11 +395,18 @@ This suggests a likely **recessive inheritance pattern**. We want to filter for 
 
 ```bash
 (
-  (GEN[proband].GT = '1/1' | GEN[proband].GT = '1|1') &
-  ((GEN[mother].GT = '0/1' | GEN[mother].GT = '1/0' | GEN[mother].GT = '0|1' | GEN[mother].GT = '1|0')) &
-  ((GEN[father].GT = '0/1' | GEN[father].GT = '1/0' | GEN[father].GT = '0|1' | GEN[father].GT = '1|0'))
+  GEN[proband].GT = '1/1' &
+  GEN[mother].GT = '0/1' &
+  GEN[father].GT = '0/1'
 )
+
+
 ```
+👨‍👩‍👦 The rule we're applying:
+
+The child (proband) must have two copies of the mutation — one from each parent. This is called homozygous for the mutation ('1/1').
+
+Each parent must have one normal copy and one mutated copy — they're carriers. This is called heterozygous ('0/1').
 
 ---
 
