@@ -368,7 +368,7 @@ Let’s now search for variants that could explain the boy’s phenotype. Consid
 To begin, investigate which genes are associated with this condition.
 
 - Visit: [Gene2Phenotype – EBI](https://www.ebi.ac.uk/gene2phenotype/)
-- Look up osteopetrosis and identify the first gene that appears (hint: it's likely **CA2**).
+- Look up osteopetrosis and identify the first gene that appears. 
 
 **Filter using `SnpSift Filter` (Galaxy version 4.3+t.galaxy1):**
 
