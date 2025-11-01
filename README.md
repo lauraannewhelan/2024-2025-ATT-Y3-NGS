@@ -354,18 +354,25 @@ The result will include a _Summary Stats_ HTML report and the annotated VCF file
 
 ---
 
+
+Filter variants using arbitrary expressions
+(Galaxy Version )
 ## Candidate Variant Detection - Develop a filtering strategy
 
 Let’s now search for variants that could explain the boy’s phenotype. Here are some points to think about.. 
 
-> 1. The boy has osteopetrosis:
+> The boy has osteopetrosis:
 >     * what genes are associated with this condition? Check https://www.ebi.ac.uk/gene2phenotype/ and see what the first gene that comes up is. 
 
+> 1. **SnpSift Filter** (Galaxy version 4.3+t.galaxy1):
+>     * _“Input variant list in VCF format *”_: The output from **SnpEff eff**.
+>     * _“Type of filter expression *”_: Simple expression.
+>     * Filter criteria: 
 ```bash
 (ANN[*].GENE = 'CA2')
 ```
 
-> 2. The parents are consanguinous:
+> The parents are consanguinous:
 >     * what inheritance pattern does that indicate to you? Is there a way we can filter for genotypes?
 
 ```bash
@@ -376,7 +383,7 @@ Let’s now search for variants that could explain the boy’s phenotype. Here a
 )
 ```
 
-> 3. You should be left with 2 possible variants:
+> You should be left with 2 possible variants:
 >     * which one is the more likely disease causing candidate?
 >     * Think about variant type..
 >     * Try..
